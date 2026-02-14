@@ -1,0 +1,77 @@
+import { readdirSync, readFileSync } from 'node:fs'
+import { dirname, extname, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
+import { defineConfig } from 'vitepress'
+
+type FrontmatterMap = Record<string, string>
+type SidebarPostItem = { text: string; link: string; date: string }
+
+const currentDir = dirname(fileURLToPath(import.meta.url))
+const postsDir = resolve(currentDir, '../docs/posts')
+
+function stripQuotes(value: string): string {
+  return value.replace(/^['"]|['"]$/g, '').trim()
+}
+
+function parseFrontmatter(content: string): FrontmatterMap {
+  const blockMatch = content.match(/^---\n([\s\S]*?)\n---/)
+  if (!blockMatch) return {}
+
+  const frontmatter: FrontmatterMap = {}
+  for (const line of blockMatch[1].split('\n')) {
+    const match = line.match(/^([A-Za-z0-9_-]+)\s*:\s*(.+)$/)
+    if (!match) continue
+    frontmatter[match[1]] = stripQuotes(match[2])
+  }
+  return frontmatter
+}
+
+const sidebarPostItems = readdirSync(postsDir)
+  .filter((fileName) => extname(fileName) === '.md')
+  .map((fileName) => {
+    const slug = fileName.replace(/\.md$/, '')
+    const source = readFileSync(resolve(postsDir, fileName), 'utf-8')
+    const frontmatter = parseFrontmatter(source)
+    return {
+      text: frontmatter.title || slug,
+      link: `/posts/${slug}`,
+      date: frontmatter.date || ''
+    } satisfies SidebarPostItem
+  })
+  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+
+const latestPostLink = sidebarPostItems[0]?.link || '/posts/example'
+
+// https://vitepress.dev/reference/site-config
+export default defineConfig({
+  srcDir: "docs",
+  
+  title: "自主學習對話錄",
+  description: "自主學習的親師生探索對話錄",
+  themeConfig: {
+    // https://vitepress.dev/reference/default-theme-config
+    nav: [
+      { text: '首頁', link: '/' },
+      { text: '文章', link: latestPostLink },
+      { text: 'Examples', link: '/markdown-examples' }
+    ],
+
+    sidebar: [
+      {
+        text: '文章',
+        items: sidebarPostItems.map(({ text, link }) => ({ text, link }))
+      },
+      {
+        text: 'Examples',
+        items: [
+          { text: 'Markdown Examples', link: '/markdown-examples' },
+          { text: 'Runtime API Examples', link: '/api-examples' }
+        ]
+      }
+    ],
+
+    socialLinks: [
+      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+    ]
+  }
+})
