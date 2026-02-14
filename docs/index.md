@@ -1,27 +1,15 @@
 ---
 # https://vitepress.dev/reference/default-theme-home-page
-layout: home
-
-hero:
-  name: "自主學習對話錄"
-  text: "自主學習的親師生探索對話錄"
-  tagline: My great project tagline
-  actions:
-    - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
-    - theme: alt
-      text: API Examples
-      link: /api-examples
-
-features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
 ---
+
+# 歡迎來到自主學習對話錄
+
+這裡是記錄自主學習的親師生探索對話錄的網站。
+
+## 關於
+
+我們會將會議和對話的逐字稿，依序放入此部落格中，並附上簡單的摘要。
+
 
 ## 最新文章
 
@@ -47,6 +35,7 @@ function formatDate(dateString) {
   return dateString
 }
 </script>
+
 
 <ul class="post-list">
   <li v-for="post in posts" :key="post.url" class="post-item">
