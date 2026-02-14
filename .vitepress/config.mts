@@ -71,7 +71,9 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/3dw' }
+      { icon: 'github', link: 'https://github.com/3dw' },
+      { icon: 'hackmd', link: 'https://g0v.hackmd.io/@bestian/ryCyzVAslx/https%3A%2F%2Fg0v.hackmd.io%2F%40jothon%2FS1mI_Bxhc' },
+      { icon: 'slack', link: 'https://g0v-tw.slack.com/?redir=%2Farchives%2FC09GH7XK7HA%3Fname%3DC09GH7XK7HA' }
     ]
   }
 })
