@@ -1,6 +1,11 @@
 # 3dw-blog
 
-以 VitePress 建置的部落格。程式碼採用 [MIT License](LICENSE)。
+以 VitePress 建置的部落格。
+
+## 授權
+
+- **程式碼**：本專案程式碼採 [MIT License](LICENSE)。
+- **內容**：`docs/posts` 內文章採 [CC-BY-SA-4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.zh-hant)，詳見站台 footer。
 
 ## 開發
 
