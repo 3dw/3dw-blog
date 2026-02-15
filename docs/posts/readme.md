@@ -1,6 +1,6 @@
 ---
 title: 關於本站
-description: 自主學習對話錄
+description: 為什麼自主學習對話錄，從一開始就要留下記錄
 date: 2026-02-14
 ---
 
