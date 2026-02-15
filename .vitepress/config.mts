@@ -7,7 +7,23 @@ type FrontmatterMap = Record<string, string>
 type SidebarPostItem = { text: string; link: string; date: string }
 
 const currentDir = dirname(fileURLToPath(import.meta.url))
+const rootDir = resolve(currentDir, '..')
 const postsDir = resolve(currentDir, '../docs/posts')
+
+/** 從專案根目錄載入 .env 中的 VITE_SUMMARIZE_ENDPOINT（確保 theme 能讀到） */
+function loadSummarizeEndpoint(): string {
+  try {
+    const envPath = resolve(rootDir, '.env')
+    const content = readFileSync(envPath, 'utf-8')
+    const match = content.match(/^\s*VITE_SUMMARIZE_ENDPOINT\s*=\s*(.+)\s*$/m)
+    if (match) {
+      return match[1].replace(/^['"]|['"]$/g, '').trim()
+    }
+  } catch {
+    // .env 不存在或讀取失敗則略過
+  }
+  return process.env.VITE_SUMMARIZE_ENDPOINT || ''
+}
 
 function stripQuotes(value: string): string {
   return value.replace(/^['"]|['"]$/g, '').trim()
@@ -42,10 +58,18 @@ const sidebarPostItems = readdirSync(postsDir)
 
 const latestPostLink = sidebarPostItems[0]?.link || '/posts/example'
 
+const summarizeEndpoint = loadSummarizeEndpoint()
+
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   srcDir: "docs",
-  
+
+  vite: {
+    define: {
+      'import.meta.env.VITE_SUMMARIZE_ENDPOINT': JSON.stringify(summarizeEndpoint)
+    }
+  },
+
   title: "自主學習對話錄",
   description: "自主學習的親師生探索對話錄",
   themeConfig: {

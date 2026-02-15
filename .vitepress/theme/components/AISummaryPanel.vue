@@ -2,7 +2,7 @@
 import MarkdownIt from 'markdown-it'
 import { computed, nextTick, onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vitepress'
-import { collectPostText, requestPostSummary } from '../ai_summarize'
+import { collectPostText, getSummarizeEndpoint, requestPostSummary } from '../ai_summarize'
 
 const md = new MarkdownIt({
   html: false,
@@ -18,6 +18,7 @@ const summaryMarkdown = ref('')
 const autoRequested = ref(false)
 
 const enableAutoRequest = true
+const isSummarizeConfigured = computed(() => Boolean(getSummarizeEndpoint()))
 const isPostPage = computed(() => route.path.startsWith('/posts/'))
 const summaryHtml = computed(() => md.render(normalizeSummaryMarkdown(summaryMarkdown.value)))
 
@@ -81,7 +82,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <section v-if="isPostPage" class="ai-summary">
+  <section v-if="isPostPage && isSummarizeConfigured" class="ai-summary">
     <div class="ai-summary__head">
       <h2 class="ai-summary__title">AI 大綱</h2>
     </div>
@@ -96,7 +97,7 @@ onMounted(() => {
     </template>
     <div v-else-if="loading" class="ai-summary__loading" role="status" aria-live="polite">
       <span class="ai-summary__spinner" aria-hidden="true" />
-      <span>正在向摘要服務請求內容，請稍候...</span>
+      <span>正在向摘要服務請求內容，請稍候一分鐘...</span>
     </div>
     <div v-else-if="loaded" class="vp-doc ai-summary__content" v-html="summaryHtml" />
     <p v-else class="ai-summary__hint">正在準備摘要...</p>

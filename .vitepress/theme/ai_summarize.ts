@@ -1,5 +1,10 @@
-const SUMMARIZE_ENDPOINT =
-  'https://blog-summarize.alearn13994229.workers.dev/api/summarize'
+/// <reference path="./env.d.ts" />
+/** 摘要 API 端點，由 .env 的 VITE_SUMMARIZE_ENDPOINT 經 config 的 vite.define 注入 */
+const SUMMARIZE_ENDPOINT = import.meta.env.VITE_SUMMARIZE_ENDPOINT ?? ''
+
+export function getSummarizeEndpoint(): string {
+  return SUMMARIZE_ENDPOINT
+}
 
 type SummarizeResponse = {
   text?: string
@@ -19,6 +24,9 @@ export function collectPostText(): string {
 }
 
 export async function requestPostSummary(text: string, pagePath: string): Promise<string> {
+  if (!SUMMARIZE_ENDPOINT) {
+    throw new Error('未設定摘要服務端點（請設定環境變數 VITE_SUMMARIZE_ENDPOINT）')
+  }
   const response = await fetch(SUMMARIZE_ENDPOINT, {
     method: 'POST',
     headers: {

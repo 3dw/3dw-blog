@@ -19,3 +19,7 @@ node_modules
 # VitePress build output
 .vitepress/cache/
 .vitepress/dist/
+
+# Local env (可能含 VITE_SUMMARIZE_ENDPOINT 等)
+.env
+.env.local
