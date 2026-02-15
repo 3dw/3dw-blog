@@ -9,5 +9,8 @@
     "dev": "vitepress dev",
     "build": "vitepress build",
     "preview": "vitepress preview"
+  },
+  "dependencies": {
+    "markdown-it": "^14.1.1"
   }
 }

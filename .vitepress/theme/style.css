@@ -129,3 +129,65 @@
   --vp-custom-block-tip-code-bg: var(--vp-c-brand-soft);
 }
 
+.ai-summary {
+  margin: 0 0 20px;
+  padding: 14px 16px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+  background: var(--vp-c-bg-soft);
+}
+
+.ai-summary__head {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.ai-summary__title {
+  margin: 0;
+  font-size: 20px;
+}
+
+.ai-summary__meta,
+.ai-summary__loading,
+.ai-summary__hint,
+.ai-summary__error {
+  margin: 10px 0 0;
+}
+
+.ai-summary__meta {
+  color: var(--vp-c-text-2);
+  font-size: 13px;
+}
+
+.ai-summary__error {
+  color: var(--vp-c-danger-1);
+}
+
+.ai-summary__retry {
+  margin-top: 8px;
+  padding: 4px 10px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--vp-c-text-2);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.ai-summary__retry:hover {
+  border-color: var(--vp-c-text-2);
+  color: var(--vp-c-text-1);
+}
+
+.ai-summary__retry:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.ai-summary__content :first-child {
+  margin-top: 10px;
+}
+
