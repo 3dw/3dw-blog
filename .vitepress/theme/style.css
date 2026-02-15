@@ -151,7 +151,6 @@
 }
 
 .ai-summary__meta,
-.ai-summary__loading,
 .ai-summary__hint,
 .ai-summary__error {
   margin: 10px 0 0;
@@ -185,6 +184,32 @@
 .ai-summary__retry:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+.ai-summary__loading {
+  margin-top: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ai-summary__spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--vp-c-divider);
+  border-top-color: var(--vp-c-brand-2);
+  border-radius: 50%;
+  animation: ai-summary-spin 0.8s linear infinite;
+}
+
+@keyframes ai-summary-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .ai-summary__content :first-child {

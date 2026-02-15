@@ -94,7 +94,10 @@ onMounted(() => {
         重試摘要
       </button>
     </template>
-    <p v-else-if="loading" class="ai-summary__loading">正在向摘要服務請求內容，請稍候...</p>
+    <div v-else-if="loading" class="ai-summary__loading" role="status" aria-live="polite">
+      <span class="ai-summary__spinner" aria-hidden="true" />
+      <span>正在向摘要服務請求內容，請稍候...</span>
+    </div>
     <div v-else-if="loaded" class="vp-doc ai-summary__content" v-html="summaryHtml" />
     <p v-else class="ai-summary__hint">正在準備摘要...</p>
   </section>
