@@ -9,6 +9,13 @@
 
 ## 開發
 
+請先安裝 Yarn（建議 v4）：
+
+```bash
+npm install -g yarn
+yarn --version  # 檢查版本，需為 4.x
+```
+
 ```bash
 yarn install
 yarn dev
