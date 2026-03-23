@@ -9,10 +9,14 @@
 - **程式碼**：本專案程式碼採 [MIT License](LICENSE)。
 - **內容**：`docs/posts` 內文章採 [CC-BY-SA-4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.zh-hant)，詳見站台 footer。
 
+## 參與編輯
+
+近端開發，請先`pull` 再 `commit` 再 `push`，以避免版本衝突。
+
 ## 草稿
 
 - **草稿共筆**：`draft` 內文章為草稿，不會呈現在網頁上。
-- **編輯方式**：`draft` 內文章可以在Github網站上用瀏覽器介面編輯，按`preview`可以切換預覽模式。
+- **編輯方式**：`draft` 內文章可在近端編輯，亦可在Github網站上直接用瀏覽器介面編輯，按`preview`可以切換預覽模式。(推薦新手使用瀏覽器編輯草稿)
 - **定稿後發佈**：參見以下**開發**段落。
 
 ## 開發
