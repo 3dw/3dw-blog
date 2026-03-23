@@ -9,9 +9,6 @@
 - **程式碼**：本專案程式碼採 [MIT License](LICENSE)。
 - **內容**：`docs/posts` 內文章採 [CC-BY-SA-4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.zh-hant)，詳見站台 footer。
 
-## 參與編輯
-
-近端開發，請先`pull` 再 `commit` 再 `push`，以避免版本衝突。
 
 ## 草稿
 
@@ -35,6 +32,10 @@ yarn dev
 ```
 
 以上命令可以在`http://localhost:5173/`位置啟動本地伺服器，供瀏覽器開啟，以作為發佈前的預覽。
+
+### 參與編輯
+
+近端開發，請先`pull` 再 `commit` 再 `push`，以避免版本衝突。
 
 ### 上稿流程
 
