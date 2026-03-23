@@ -86,10 +86,10 @@ export default defineConfig({
         items: sidebarPostItems.map(({ text, link }) => ({ text, link }))
       },
       {
-        text: 'Examples',
+        text: '範例',
         items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
+          { text: 'Markdown 範例', link: '/markdown-examples' },
+          // { text: 'Runtime API 範例', link: '/api-examples' }
         ]
       }
     ],
