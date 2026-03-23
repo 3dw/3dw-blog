@@ -23,7 +23,3 @@ node_modules
 # Local env (可能含 VITE_SUMMARIZE_ENDPOINT 等)
 .env
 .env.local
-
-# Lock files
-yarn.lock
-package-lock.json
