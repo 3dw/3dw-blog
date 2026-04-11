@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI浪潮下的自主學習生態系統</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Noto Sans TC', sans-serif;
+  background: #FAFBFE;
+  color: #2D3748;
+  padding: 40px 20px 60px;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+/* Title */
+.main-title {
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #1A202C;
+  margin-bottom: 6px;
+  letter-spacing: 2px;
+}
+.main-title span { color: #E67E22; }
+.subtitle {
+  text-align: center;
+  font-size: 1rem;
+  color: #718096;
+  margin-bottom: 36px;
+}
+
+/* AI Layer */
+.ai-layer {
+  background: linear-gradient(135deg, #FFF9EC 0%, #FFF3D6 100%);
+  border: 2px dashed #F6C344;
+  border-radius: 24px;
+  padding: 28px 24px 32px;
+  margin-bottom: 28px;
+  position: relative;
+}
+.ai-layer-label {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: .95rem;
+  color: #B7791F;
+  font-weight: 700;
+}
+.ai-layer-label em { font-style: normal; color: #E67E22; font-size: 1.1rem; }
+.ai-layer-label span { color: #A0AEC0; font-weight: 400; }
+
+/* Student card */
+.student-card {
+  background: #fff;
+  border: 2px solid #68D391;
+  border-radius: 20px;
+  padding: 24px;
+  text-align: center;
+  max-width: 340px;
+  margin: 0 auto 20px;
+  box-shadow: 0 4px 20px rgba(104,211,145,.15);
+  position: relative;
+}
+.student-card .avatar-row {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.card-icon { font-size: 2rem; }
+.card-title { font-size: 1.5rem; font-weight: 900; color: #276749; }
+.card-role { font-size: .85rem; color: #48BB78; font-weight: 700; margin: 4px 0 8px; }
+.card-desc { font-size: .82rem; color: #718096; line-height: 1.7; }
+
+/* Connectors */
+.connector-row {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin: 16px 0;
+}
+.connector-badge {
+  background: #EBF8FF;
+  border: 1.5px solid #90CDF4;
+  border-radius: 20px;
+  padding: 6px 18px;
+  font-size: .82rem;
+  color: #2B6CB0;
+  font-weight: 600;
+}
+
+/* Three columns */
+.three-cols {
+  display: flex;
+  gap: 20px;
+  align-items: stretch;
+  margin-bottom: 16px;
+}
+.col-card {
+  flex: 1;
+  border-radius: 20px;
+  padding: 22px 16px;
+  text-align: center;
+  position: relative;
+}
+.col-card .avatar-row {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+.teacher-card {
+  background: #EBF8FF;
+  border: 2px solid #63B3ED;
+  box-shadow: 0 4px 16px rgba(99,179,237,.12);
+}
+.teacher-card .card-title { color: #2B6CB0; }
+.teacher-card .card-role { color: #4299E1; }
+
+.center-card {
+  background: #FFFAF0;
+  border: 3px solid #F6AD55;
+  border-radius: 50%;
+  width: 220px;
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  flex-shrink: 0;
+  box-shadow: 0 6px 24px rgba(246,173,85,.18);
+}
+.center-card .card-icon { font-size: 2.2rem; }
+.center-card .card-title { color: #C05621; font-size: 1.3rem; }
+.center-card .card-desc { font-size: .78rem; color: #9C6B2F; }
+
+.parent-card {
+  background: #FFF5F5;
+  border: 2px solid #FC8181;
+  box-shadow: 0 4px 16px rgba(252,129,129,.12);
+}
+.parent-card .card-title { color: #C53030; }
+.parent-card .card-role { color: #F56565; }
+
+/* Alliance */
+.alliance-row {
+  text-align: center;
+  margin: 12px 0 0;
+}
+.alliance-badge {
+  display: inline-block;
+  background: #F0FFF4;
+  border: 1.5px solid #9AE6B4;
+  border-radius: 20px;
+  padding: 6px 22px;
+  font-size: .82rem;
+  color: #276749;
+  font-weight: 600;
+}
+
+/* Arrow */
+.arrow-row {
+  text-align: center;
+  margin: 22px 0;
+  font-size: 1.4rem;
+  color: #CBD5E0;
+  letter-spacing: 6px;
+}
+
+/* Core */
+.core-box {
+  background: linear-gradient(135deg, #EBF4FF 0%, #E9D8FD 100%);
+  border: 2px solid #B794F4;
+  border-radius: 20px;
+  padding: 22px;
+  text-align: center;
+  margin-bottom: 22px;
+}
+.core-box .card-title { color: #553C9A; font-size: 1.15rem; }
+.core-box .tags { margin-top: 8px; font-size: .95rem; color: #6B46C1; font-weight: 600; letter-spacing: 4px; }
+
+/* Community */
+.community-box {
+  background: linear-gradient(135deg, #F0FFF4 0%, #C6F6D5 100%);
+  border: 2px solid #68D391;
+  border-radius: 20px;
+  padding: 24px;
+  text-align: center;
+}
+.community-box .card-title { color: #276749; font-size: 1.15rem; }
+.community-box .card-role { color: #38A169; font-size: .88rem; }
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 14px;
+}
+.tag-pill {
+  background: #fff;
+  border: 1.5px solid #9AE6B4;
+  border-radius: 16px;
+  padding: 5px 16px;
+  font-size: .8rem;
+  color: #276749;
+  font-weight: 500;
+}
+
+/* People avatars */
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,.08);
+}
+.av-green { background: #C6F6D5; }
+.av-blue { background: #BEE3F8; }
+.av-pink { background: #FED7E2; }
+.av-yellow { background: #FEFCBF; }
+.av-purple { background: #E9D8FD; }
+.av-orange { background: #FEEBC8; }
+
+/* Decorations */
+.deco {
+  position: absolute;
+  font-size: 1.4rem;
+  opacity: .5;
+}
+
+@media (max-width: 680px) {
+  .three-cols { flex-direction: column; align-items: center; }
+  .col-card { width: 100%; max-width: 300px; }
+  .center-card { width: 180px; height: 180px; }
+  .main-title { font-size: 1.5rem; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <h1 class="main-title"><span>AI</span>浪潮下的自主學習生態系統</h1>
+  <p class="subtitle">每個人都成為更好的自己，創造幸福的人生</p>
+
+  <!-- AI Empowerment Layer -->
+  <div class="ai-layer">
+    <div class="ai-layer-label">☀️ <em>AI 賦能層</em> <span>— 工具 · 資源 · 加速 · 連結外界</span></div>
+
+    <!-- Student -->
+    <div class="student-card">
+      <div class="avatar-row">
+        <span class="avatar av-green">👧</span>
+        <span class="avatar av-blue">👦</span>
+        <span class="avatar av-yellow">🧒</span>
+      </div>
+      <div class="card-icon">📚</div>
+      <div class="card-title">學生</div>
+      <div class="card-role">學習者 ＋ 創造者</div>
+      <div class="card-desc">自我覺察 · 主動探索 · 判斷思辨<br>善用AI工具 · 創造與輸出</div>
+    </div>
+
+    <!-- Connectors -->
+    <div class="connector-row">
+      <span class="connector-badge">🔄 教學相長</span>
+      <span class="connector-badge">🌱 共同成長</span>
+    </div>
+
+    <!-- Three columns -->
+    <div class="three-cols">
+      <!-- Teacher -->
+      <div class="col-card teacher-card">
+        <div class="avatar-row">
+          <span class="avatar av-blue">👨‍🏫</span>
+          <span class="avatar av-purple">👩‍🏫</span>
+        </div>
+        <div class="card-icon">🏗️</div>
+        <div class="card-title">教師</div>
+        <div class="card-role">引導者 ＋ 學習者</div>
+        <div class="card-desc">設計問題 · 搭建鷹架<br>引導探索 · 教學相長</div>
+      </div>
+
+      <!-- Center: 自主成長 -->
+      <div style="display:flex;align-items:center;justify-content:center;">
+        <div class="center-card">
+          <div class="card-icon">🧭</div>
+          <div class="card-title">自主成長</div>
+          <div class="card-desc">每個人對自己生命的<br>主權與願力</div>
+        </div>
+      </div>
+
+      <!-- Parent -->
+      <div class="col-card parent-card">
+        <div class="avatar-row">
+          <span class="avatar av-pink">👩</span>
+          <span class="avatar av-orange">👨</span>
+        </div>
+        <div class="card-icon">🏠</div>
+        <div class="card-title">家長</div>
+        <div class="card-role">陪伴者 ＋ 覺醒者</div>
+        <div class="card-desc">穩定陪伴 · 情感支持<br>共同成長 · 自我覺醒</div>
+      </div>
+    </div>
+
+    <div class="alliance-row">
+      <span class="alliance-badge">🤝 協作同盟</span>
+    </div>
+  </div>
+
+  <!-- Arrow -->
+  <div class="arrow-row">▼ ▼ ▼</div>
+
+  <!-- Core Competencies -->
+  <div class="core-box">
+    <div style="margin-bottom:6px;">
+      <span class="avatar av-purple" style="width:30px;height:30px;font-size:.9rem;">🧠</span>
+    </div>
+    <div class="card-title">📖 共有的核心素養</div>
+    <div class="tags">動機 · 能力 · 態度</div>
+  </div>
+
+  <div class="arrow-row">▼ ▼ ▼</div>
+
+  <!-- Community -->
+  <div class="community-box">
+    <div style="display:flex;justify-content:center;gap:6px;margin-bottom:8px;">
+      <span class="avatar av-green">🙋‍♀️</span>
+      <span class="avatar av-blue">🙋</span>
+      <span class="avatar av-pink">🙋‍♂️</span>
+      <span class="avatar av-yellow">👋</span>
+    </div>
+    <div class="card-title">🌿 社群土壤</div>
+    <div class="card-role">自主學習促進會 ＋ 樂觀書院</div>
+    <div class="tag-row">
+      <span class="tag-pill">共學場域</span>
+      <span class="tag-pill">同儕共振</span>
+      <span class="tag-pill">經驗傳承</span>
+      <span class="tag-pill">安全空間</span>
+      <span class="tag-pill">多元對話</span>
+      <span class="tag-pill">實踐舞台</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
