@@ -65,6 +65,7 @@ export default defineConfig({
   srcDir: "docs",
 
   vite: {
+    publicDir: resolve(rootDir, 'public'),
     define: {
       'import.meta.env.VITE_SUMMARIZE_ENDPOINT': JSON.stringify(summarizeEndpoint)
     }
